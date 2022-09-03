@@ -296,7 +296,7 @@ class TodoParser(object):
     def __init__(self):
         # Load any custom identifiers, otherwise use the default.
         custom_identifiers = os.getenv('INPUT_IDENTIFIERS')
-        self.identifiers = ['TODO']
+        self.identifiers = ['.. TODO::', '.. todo::', 'TODO', 'todo']
         self.identifiers_dict = None
         if custom_identifiers:
             try:
@@ -643,6 +643,9 @@ class TodoParser(object):
 
 
 if __name__ == "__main__":
+    
+    print(TodoParser().parse(".. todo:: test123"))
+    exit()
     # Create a basic client for communicating with GitHub, automatically initialised with environment variables.
     client = GitHubClient()
     if client.diff_url or len(client.commits) != 0:
